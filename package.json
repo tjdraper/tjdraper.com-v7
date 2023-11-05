@@ -1,17 +1,42 @@
 {
-  "name": "tjdraper.com-v7",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/check": "^0.3.1",
-    "astro": "^3.4.3",
-    "typescript": "^5.2.2"
-  }
+    "name": "tjdraper.com-v7",
+    "type": "module",
+    "version": "0.0.1",
+    "scripts": {
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "pnpm check && astro build",
+        "preview": "astro preview",
+        "astro": "astro",
+        "check": "npx eslint src/* && npx tsc && npx astro check"
+    },
+    "dependencies": {
+        "@astrojs/check": "^0.3.1",
+        "@astrojs/mdx": "^1.1.3",
+        "@astrojs/react": "^3.0.4",
+        "@types/react": "^18.0.21",
+        "@types/react-dom": "^18.0.6",
+        "astro": "^3.4.3",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0",
+        "typescript": "^5.2.2"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.23.2",
+        "@babel/eslint-parser": "^7.22.15",
+        "@babel/preset-env": "^7.23.2",
+        "eslint": "^8.53.0",
+        "eslint-config-airbnb": "^19.0.4",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-config-airbnb-typescript": "^17.1.0",
+        "eslint-config-next": "^14.0.1",
+        "eslint-plugin-disable": "^2.0.3",
+        "eslint-plugin-eslint-comments": "^3.2.0",
+        "eslint-plugin-import": "^2.29.0",
+        "eslint-plugin-jsx-a11y": "^6.8.0",
+        "eslint-plugin-no-jquery": "^2.7.0",
+        "eslint-plugin-promise": "^6.1.1",
+        "eslint-plugin-react": "^7.33.2",
+        "eslint-plugin-react-hooks": "^4.6.0"
+    }
 }

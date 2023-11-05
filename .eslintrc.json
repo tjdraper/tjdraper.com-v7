@@ -1,0 +1,104 @@
+{
+    "extends": [
+        "airbnb",
+        "airbnb-typescript",
+        "airbnb/hooks",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:eslint-comments/recommended",
+        "next/core-web-vitals",
+        "next",
+        "plugin:no-jquery/all"
+    ],
+    "plugins": [
+        "no-jquery",
+        "disable"
+    ],
+    "processor": "disable/disable",
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "parserOptions": {
+        "parser": "babel-eslint",
+        "project": "./tsconfig.json"
+    },
+    "ignorePatterns": [
+        "pages/blog/page/**",
+        "pages/blog/tag/**"
+    ],
+    "rules": {
+        "@typescript-eslint/member-delimiter-style": "error",
+        "@typescript-eslint/method-signature-style": "error",
+        "jsx-a11y/label-has-associated-control": [ "error", {
+            "required": {
+                "some": [ "nesting", "id"  ]
+            }
+        }],
+        "jsx-a11y/label-has-for": [ "error", {
+            "required": {
+                "some": [ "nesting", "id"  ]
+            }
+        }],
+        "jsx-a11y/anchor-is-valid": [ "error", {
+            "components": [ "Link" ],
+            "specialLink": [ "hrefLeft", "hrefRight" ],
+            "aspects": [ "invalidHref", "preferButton" ]
+        }],
+        "no-case-declarations": 0,
+        "@typescript-eslint/space-before-function-paren": 0,
+        "@typescript-eslint/no-inferrable-types": 0,
+        "react/jsx-props-no-spreading": 0,
+        "react/function-component-definition": 0,
+        "no-param-reassign": 0,
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4],
+        "@typescript-eslint/indent": ["error", 4, {
+            "SwitchCase": 1,
+            "VariableDeclarator": 1,
+            "outerIIFEBody": 1,
+            "FunctionDeclaration": {
+                "parameters": 1,
+                "body": 1
+            },
+            "FunctionExpression": {
+                "parameters": 1,
+                "body": 1
+            },
+            "CallExpression": {
+                "arguments": 1
+            },
+            "ArrayExpression": 1,
+            "ObjectExpression": 1,
+            "ImportDeclaration": 1,
+            "flatTernaryExpressions": false,
+            "ignoredNodes": ["JSXElement", "JSXElement > *", "JSXAttribute", "JSXIdentifier", "JSXNamespacedName", "JSXMemberExpression", "JSXSpreadAttribute", "JSXExpressionContainer", "JSXOpeningElement", "JSXClosingElement", "JSXText", "JSXEmptyExpression", "JSXSpreadChild"],
+            "ignoreComments": false
+        }],
+        "space-before-function-paren": ["error", {
+            "anonymous": "always",
+            "named": "always",
+            "asyncArrow": "always"
+        }],
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "js": "never",
+                "jsx": "never",
+                "ts": "never",
+                "tsx": "never"
+            }
+        ],
+        "newline-before-return": 1,
+        "import/no-named-default": "off",
+        "react/no-danger": "off"
+    },
+    "overrides": [
+        {
+            "files": ["*.jsx", "*.tsx"],
+            "rules": {
+                "max-len": "off"
+            }
+        }
+    ]
+}
