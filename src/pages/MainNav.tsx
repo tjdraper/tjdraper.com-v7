@@ -13,10 +13,10 @@ function classNames (...classes: string[]) {
 
 export default function MainNav () {
     return (
-        <Disclosure as="nav" className="bg-gray-800 shadow">
+        <Disclosure as="nav" className="bg-gray-700 shadow">
             {({ open }) => (
                 <>
-                    <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+                    <div className="mx-auto max-w-7xl">
                         <div className="relative flex h-16 items-center justify-between">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                 <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -31,7 +31,7 @@ export default function MainNav () {
                             </div>
                             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                                 <div className="hidden sm:ml-6 sm:block w-full">
-                                    <div className="flex space-x-4 justify-center">
+                                    <div className="flex space-x-4">
                                         {navigation.map((item) => (
                                             <a
                                                 key={item.name}
@@ -48,6 +48,7 @@ export default function MainNav () {
                                     </div>
                                 </div>
                             </div>
+                            <div className="text-white text-xl font-bold mr-6">TJ Draper</div>
                         </div>
                     </div>
 
