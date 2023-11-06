@@ -19,7 +19,7 @@ if (title) {
         </head>
         <body>
             <main>
-                <MainNav client:load />
+                <MainNav client:load currentUrlPath={Astro.url.pathname} />
                 <slot />
                 <Footer />
             </main>

@@ -1,17 +1,58 @@
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
-const navigation = [
-    { name: 'Blog', href: '/', current: true },
-    { name: 'Blue Ocean Docker', href: 'https://www.blueoceandocker.com', current: false },
-    { name: 'BuzzingPixel', href: 'https://www.buzzingpixel.com', current: false },
-];
-
 function classNames (...classes: string[]) {
     return classes.filter(Boolean).join(' ');
 }
 
-export default function MainNav () {
+export default function MainNav (
+    {
+        currentUrlPath,
+    }: {
+        currentUrlPath: string;
+    },
+) {
+    const navigation = [
+        {
+            name: 'Blog',
+            href: '/',
+            slug: 'blog',
+            current: false,
+        },
+        {
+            name: 'About',
+            href: '/about',
+            slug: 'about',
+            current: false,
+        },
+        {
+            name: 'Blue Ocean Docker',
+            href: 'https://www.blueoceandocker.com',
+            current: false,
+        },
+        {
+            name: 'BuzzingPixel',
+            href: 'https://www.buzzingpixel.com',
+            current: false,
+        },
+    ];
+
+    const segments = currentUrlPath.split('/');
+
+    if (segments[0] === '') {
+        segments.shift();
+    }
+
+    let primarySegment = segments[0];
+
+    if (primarySegment === '') {
+        primarySegment = 'blog';
+    }
+
+    navigation.forEach((item) => {
+        item.current = item.slug === primarySegment;
+    });
+
     return (
         <Disclosure as="nav" className="bg-tjd-red-600 shadow">
             {({ open }) => (
