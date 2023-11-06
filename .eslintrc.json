@@ -1,5 +1,6 @@
 {
     "extends": [
+        "plugin:astro/recommended",
         "airbnb",
         "airbnb-typescript",
         "airbnb/hooks",
@@ -25,6 +26,7 @@
         "pages/blog/tag/**"
     ],
     "rules": {
+    "@typescript-eslint/triple-slash-reference": "off",
         "@typescript-eslint/member-delimiter-style": "error",
         "@typescript-eslint/method-signature-style": "error",
         "jsx-a11y/label-has-associated-control": [ "error", {
@@ -89,10 +91,23 @@
         ],
         "newline-before-return": 1,
         "import/no-named-default": "off",
+        "import/no-named-as-default": "off",
         "react/no-danger": "off",
         "react/react-in-jsx-scope": "off"
     },
     "overrides": [
+        {
+            "files": ["*.astro"],
+            "parser": "astro-eslint-parser",
+            "parserOptions": {
+                "parser": "@typescript-eslint/parser",
+                "extraFileExtensions": [".astro"]
+            },
+            "rules": {
+                "react/no-unknown-property":"off",
+                "react/jsx-filename-extension": "off"
+            }
+        },
         {
             "files": ["*.jsx", "*.tsx"],
             "rules": {
