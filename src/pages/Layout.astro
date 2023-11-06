@@ -1,0 +1,24 @@
+---
+import MainNav from './MainNav';
+let { title } = Astro.props;
+
+if (title) {
+    title = `${title} | TJDraper.com`;
+} else {
+    title = 'TJDraper.com';
+}
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>{title}</title>
+    </head>
+    <body>
+        <main>
+            <MainNav client:load />
+            <slot />
+        </main>
+    </body>
+</html>
