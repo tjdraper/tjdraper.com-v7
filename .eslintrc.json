@@ -5,8 +5,6 @@
         "airbnb/hooks",
         "plugin:@typescript-eslint/recommended",
         "plugin:eslint-comments/recommended",
-        "next/core-web-vitals",
-        "next",
         "plugin:no-jquery/all"
     ],
     "plugins": [
@@ -91,7 +89,8 @@
         ],
         "newline-before-return": 1,
         "import/no-named-default": "off",
-        "react/no-danger": "off"
+        "react/no-danger": "off",
+        "react/react-in-jsx-scope": "off"
     },
     "overrides": [
         {
