@@ -5,6 +5,9 @@ export type Post = {
     collection: string;
     data: {
         title: string;
+        preview: string;
     };
     render: () => Promise<{ Content: string }>;
 };
+
+export type Posts = Array<Post>;

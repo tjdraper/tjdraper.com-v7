@@ -1,5 +1,6 @@
 ---
 import MainNav from './MainNav';
+
 let { title } = Astro.props;
 
 if (title) {
@@ -9,16 +10,16 @@ if (title) {
 }
 ---
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>{title}</title>
-    </head>
-    <body>
-        <main>
-            <MainNav client:load />
-            <slot />
-        </main>
-    </body>
-</html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width,initial-scale=1" />
+            <title>{title}</title>
+        </head>
+        <body>
+            <main>
+                <MainNav client:load />
+                <slot />
+            </main>
+        </body>
+    </html>
