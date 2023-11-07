@@ -15,19 +15,19 @@ export default function Component (
     const navigation = [
         {
             name: 'Blog',
-            href: '/',
+            href: '/tjdraper.com-v7',
             slug: 'blog',
             current: false,
         },
         {
             name: 'About',
-            href: '/about',
+            href: '/tjdraper.com-v7/about',
             slug: 'about',
             current: false,
         },
         {
             name: 'RSS',
-            href: '/blog/feed.xml',
+            href: '/tjdraper.com-v7/blog/feed.xml',
             slug: 'rss',
             current: false,
         },
