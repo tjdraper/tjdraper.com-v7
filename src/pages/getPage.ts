@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { getCollection } from 'astro:content';
 import type { Page, Pages } from './Page';
 

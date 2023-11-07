@@ -1,4 +1,6 @@
 import rss, { type RSSFeedItem } from '@astrojs/rss';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { getCollection } from 'astro:content';
 import sanitizeHtml from 'sanitize-html';
 import MarkdownIt from 'markdown-it';
