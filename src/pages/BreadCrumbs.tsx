@@ -20,7 +20,7 @@ export default function Example (
 
     return (
         <nav className="flex border-b border-gray-200 bg-white" aria-label="Breadcrumb">
-            <ol className="mx-auto flex w-full max-w-screen-xl space-x-4 px-4 sm:px-6 lg:px-8">
+            <ol className="mx-auto flex w-full max-w-4xl space-x-4 px-4 sm:px-6 lg:px-8">
                 <li className="flex">
                     <div className="flex items-center">
                         <a href="/" className="text-gray-400 hover:text-gray-500">
