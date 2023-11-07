@@ -26,13 +26,14 @@ export default function Component (
             current: false,
         },
         {
-            name: 'Blue Ocean Docker',
-            href: 'https://www.blueoceandocker.com',
+            name: 'RSS',
+            href: '/blog/feed.xml',
+            slug: 'rss',
             current: false,
         },
         {
-            name: 'BuzzingPixel',
-            href: 'https://www.buzzingpixel.com',
+            name: 'Blue Ocean Docker',
+            href: 'https://www.blueoceandocker.com',
             current: false,
         },
     ];
