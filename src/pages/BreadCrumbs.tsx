@@ -7,7 +7,7 @@ export type BreadCrumb = {
 
 export type BreadCrumbs = Array<BreadCrumb>;
 
-export default function Example (
+export default function Component (
     {
         breadCrumbs,
     }: {

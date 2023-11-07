@@ -5,6 +5,7 @@ export type Post = {
     collection: string;
     data: {
         title: string;
+        link: string | undefined;
         preview: string;
     };
     render: () => Promise<{ Content: string }>;
