@@ -44,6 +44,10 @@ export default function Component (
         segments.shift();
     }
 
+    if (segments[0] === 'tjdraper.com-v7') {
+        segments.shift();
+    }
+
     let primarySegment = segments[0];
 
     if (primarySegment === '') {
