@@ -105,7 +105,8 @@
             },
             "rules": {
                 "react/no-unknown-property":"off",
-                "react/jsx-filename-extension": "off"
+                "react/jsx-filename-extension": "off",
+                "react/style-prop-object": "off"
             }
         },
         {

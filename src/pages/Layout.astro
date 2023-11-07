@@ -16,12 +16,14 @@ if (title) {
             <meta charset="utf-8" />
             <meta name="viewport" content="width=device-width,initial-scale=1" />
             <title>{title}</title>
-            <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+            <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
         </head>
         <body>
             <main>
                 <MainNav client:load currentUrlPath={Astro.url.pathname} />
-                <slot />
+                <div style="min-height: calc(100vh - 120px)">
+                    <slot />
+                </div>
                 <Footer />
             </main>
         </body>
