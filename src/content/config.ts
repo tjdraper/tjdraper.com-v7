@@ -9,5 +9,14 @@ const blog = defineCollection({
     }),
 });
 
+const pages = defineCollection({
+    schema: z.object({
+        title: z.string(),
+    }),
+});
+
 // eslint-disable-next-line import/prefer-default-export
-export const collections = { blog };
+export const collections = {
+    blog,
+    pages,
+};
