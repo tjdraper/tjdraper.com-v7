@@ -89,7 +89,7 @@ export default function Component (
                                     </div>
                                 </div>
                             </div>
-                            <div className="text-white text-xl font-bold mr-6">TJ Draper</div>
+                            <div className="text-white text-xl font-bold mr-6">TJ Writes Software</div>
                         </div>
                     </div>
 
