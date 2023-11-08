@@ -4,9 +4,10 @@ import rss, { type RSSFeedItem } from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 import sanitizeHtml from 'sanitize-html';
 import MarkdownIt from 'markdown-it';
+import footnote from 'markdown-it-footnote';
 import type { Post, Posts } from './Post';
 
-const parser = new MarkdownIt();
+const parser = (new MarkdownIt()).use(footnote);
 
 const mapPostToRssFeedItem = async (post: Post): Promise<RSSFeedItem> => {
     const idArray = post.id.split('/');

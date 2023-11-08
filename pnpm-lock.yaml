@@ -41,6 +41,9 @@ dependencies:
   markdown-it:
     specifier: ^13.0.2
     version: 13.0.2
+  markdown-it-footnote:
+    specifier: ^3.0.3
+    version: 3.0.3
   react:
     specifier: ^18.0.0
     version: 18.2.0
@@ -70,6 +73,9 @@ devDependencies:
   '@types/markdown-it':
     specifier: ^13.0.6
     version: 13.0.6
+  '@types/markdown-it-footnote':
+    specifier: ^3.0.3
+    version: 3.0.3
   '@types/sanitize-html':
     specifier: ^2.9.4
     version: 2.9.4
@@ -2152,6 +2158,12 @@ packages:
 
   /@types/linkify-it@3.0.5:
     resolution: {integrity: sha512-yg6E+u0/+Zjva+buc3EIb+29XEg4wltq7cSmd4Uc2EE/1nUVmxyzpX6gUXD0V8jIrG0r7YeOGVIbYRkxeooCtw==}
+    dev: true
+
+  /@types/markdown-it-footnote@3.0.3:
+    resolution: {integrity: sha512-sMLBj0VcWo/4vi1J7jx3DNdup2w+14RwDMdQtcFJPabeDwt945ghc8sFBgsUfnEjcBOuKaELY22JwGb7KGmsVw==}
+    dependencies:
+      '@types/markdown-it': 13.0.6
     dev: true
 
   /@types/markdown-it@13.0.6:
@@ -5089,6 +5101,10 @@ packages:
   /markdown-extensions@1.1.1:
     resolution: {integrity: sha512-WWC0ZuMzCyDHYCasEGs4IPvLyTGftYwh6wIEOULOF0HXcqZlhwRzrK0w2VUlxWA98xnvb/jszw4ZSkJ6ADpM6Q==}
     engines: {node: '>=0.10.0'}
+    dev: false
+
+  /markdown-it-footnote@3.0.3:
+    resolution: {integrity: sha512-YZMSuCGVZAjzKMn+xqIco9d1cLGxbELHZ9do/TSYVzraooV8ypsppKNmUJ0fVH5ljkCInQAtFpm8Rb3eXSrt5w==}
     dev: false
 
   /markdown-it@13.0.2:
