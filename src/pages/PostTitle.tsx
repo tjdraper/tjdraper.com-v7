@@ -11,7 +11,7 @@ export default function Component (
         return (
             <a
                 className="text-tjd-red-500 hover:text-tjd-red-600 inline-block align-middle"
-                href={`/blog/${post.slug}`}
+                href={`/blog/${post.slug}/`}
             >
                 {post.data.title}
             </a>
@@ -22,7 +22,7 @@ export default function Component (
         <>
             <a
                 className="text-tjd-red-500 hover:text-tjd-red-600 inline-block align-middle"
-                href={`/blog/${post.slug}`}
+                href={`/blog/${post.slug}/`}
             >
                 {post.data.title}
             </a>

@@ -17,7 +17,7 @@ const mapPostToRssFeedItem = async (post: Post): Promise<RSSFeedItem> => {
 
     const day = idArray[2];
 
-    const link = post.data.link ? post.data.link : `/blog/${post.slug}`;
+    const link = post.data.link ? post.data.link : `/blog/${post.slug}/`;
 
     let body = parser.render(post.body);
 
@@ -27,7 +27,7 @@ const mapPostToRssFeedItem = async (post: Post): Promise<RSSFeedItem> => {
         title += ' →';
 
         body = `
-            <a href="https://www.tjdraper.com/blog/${post.slug}">Permalink</a>
+            <a href="https://www.tjdraper.com/blog/${post.slug}/">Permalink</a>
             <br>
             ${body}
         `;
@@ -53,7 +53,7 @@ export async function GET () {
     return rss({
         title: 'TJ Writes Software',
         description: 'The writing and ramblings of a software engineering veteran',
-        site: 'https://www.tjdraper.com',
+        site: 'https://www.tjdraper.com/',
         items: rssPosts,
         customData: '<language>en-us</language>',
     });

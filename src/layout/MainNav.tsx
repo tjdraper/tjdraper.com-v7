@@ -21,7 +21,7 @@ export default function Component (
         },
         {
             name: 'About',
-            href: '/about',
+            href: '/about/',
             slug: 'about',
             current: false,
         },
