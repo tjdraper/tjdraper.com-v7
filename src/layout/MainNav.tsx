@@ -15,19 +15,19 @@ export default function Component (
     const navigation = [
         {
             name: 'Blog',
-            href: '/tjdraper.com-v7',
+            href: '/',
             slug: 'blog',
             current: false,
         },
         {
             name: 'About',
-            href: '/tjdraper.com-v7/about',
+            href: '/about',
             slug: 'about',
             current: false,
         },
         {
             name: 'RSS',
-            href: '/tjdraper.com-v7/blog/feed.xml',
+            href: '/blog/feed.xml',
             slug: 'rss',
             current: false,
         },
@@ -41,10 +41,6 @@ export default function Component (
     const segments = currentUrlPath.split('/');
 
     if (segments[0] === '') {
-        segments.shift();
-    }
-
-    if (segments[0] === 'tjdraper.com-v7') {
         segments.shift();
     }
 

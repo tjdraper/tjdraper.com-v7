@@ -6,8 +6,6 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://tjdraper.github.io',
-    base: '/tjdraper.com-v7',
     trailingSlash: 'never',
     output: 'static',
     integrations: [
