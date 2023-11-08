@@ -1,0 +1,34 @@
+---
+// eslint-disable-next-line import/no-unresolved
+import { getCollection } from 'astro:content';
+import Layout from '../../layout/Layout.astro';
+import { type Posts } from './Post';
+import PostTitle from '../PostTitle';
+
+const posts = (await getCollection('blog')).reverse() as unknown as Posts;
+---
+
+    <Layout title="Blog">
+        {posts.map((post, index) => {
+            const borderClass = (index + 1) < posts.length ? 'border-b' : '';
+
+            return (
+                <div class={`max-w-4xl mx-auto px-8 py-14 ${borderClass}`}>
+                    <h1 class="text-4xl font-bold tracking-tight sm:text-5xl text-center mb-10">
+                        <PostTitle post={post} />
+                    </h1>
+                    <div class="prose prose-xl max-w-none">
+                        {post.data.preview}
+                    </div>
+                    <div class="text-center">
+                        <a
+                            class="text-tjd-red-500 hover:text-tjd-red-600"
+                            href={`/blog/${post.slug}/`}
+                        >
+                            Read the post ›
+                        </a>
+                    </div>
+                </div>
+            );
+        })}
+    </Layout>
