@@ -8,7 +8,7 @@ As we write software, one of the tools in our toolbox is [abstraction][abstracti
 
 ## DRYing things out
 
-I am now primarily a back-end engineer working most often in PHP, but I started out in HTML and CSS. While creating sites with HTML and CSS I quickly discovered that I had to do a lot of HTML code duplication across those static HTML files. This prompted me to look into PHP where I could use PHP's `include` feature to abstract the duplicated parts of pages into single files and then `include` them on the various pages. That provided a single source of truth for, say, the main navigation of the site, or the footer.
+I am now primarily a back-end engineer working most often in PHP, but I started out in HTML and CSS. While creating sites with HTML and CSS, I quickly discovered that I had to do a lot of HTML code duplication across those static HTML files. This prompted me to look into PHP, where I could use PHP's `include` feature to abstract the duplicated parts of pages into single files and then `include` them on the various pages. That provided a single source of truth for, say, the main navigation of the site, or the footer.
 
 By pulling content from some single source files into several other pages, I had created a very basic abstraction that de-duplicated the knowledge and code that was previously duplicated.
 
@@ -32,7 +32,7 @@ There are 3 ways out of this problem:
 
 ### 1. Re-writing your application
 
-This is most often the wrong call, though it can be necessary for this and many other reasons. Even then, it should be done carefully, and probably not all at once [^2]. Often your new application will be missing business logic or features that the old system had. This is because the old and gnarly system, difficult to work on though it may be, contains within its inscrutable logic, a wealth of information necessary to the correct operation of the business, service, or use case it powers.
+This is most often the wrong call, though it can be necessary for this and many other reasons. Even then, it should be done carefully, and probably not all at once [^2]. Often your new application will be missing business logic or features that the old system had. This is because the old and gnarly system, difficult to work on though it may be, contains within its inscrutable logic, a wealth of information necessary for the correct operation of the business, service, or use case it powers.
 
 The reason for the re-write is the reason this logic and these features weren't fully understood when moving to the new system. The engineers found the old application too difficult to understand. They probably would have had better luck de-tangling the old system first _before_ a re-write, or even just sticking with the current system and refactoring it over time.
 
@@ -48,7 +48,7 @@ Don't create the wrong abstractions in the first place, and back out of them ear
 
 I realize bad abstractions are unavoidable. We're all human, we all make mistakes. Even the most senior of us make bad calls and inappropriate abstractions. One of the keys to becoming a more senior engineer is to recognize these [code smells][code smell] very early in the process and back out of them quickly. [Constant vigilance][constant vigilance]!
 
-And of course, as we endeavor not to write these hasty abstractions in the first place we should not be wary of code duplication. After you duplicate code, live with it for a while to determine if an abstraction is actually needed. [^3]
+And of course, as we endeavor not to write these hasty abstractions in the first place, we should not be wary of code duplication. After you duplicate code, live with it for a while to determine if an abstraction is actually needed. [^3]
 
 ## Examining DRY
 
@@ -73,12 +73,12 @@ I also encourage you to read the part in that chapter ([available as a free PDF]
 
 ## Keep yourself hydrated, don't be too DRY
 
-So as you work on your applications, websites, etc. remember these principles:
+So as you work on your applications, websites, etc., remember these principles:
 
 1. Don't be wary of code duplication. Duplicating code costs almost nothing. Inappropriate abstractions grow into monsters over time that significantly increase maintenance load and cost a great deal in the long run.
 2. But do use the principles of DRY programming when considering the _knowledge_ of your system.
 
-If you bear these things in mind, I believe you'll find the job of both writing and maintaining software, a much lighter burden in the long run.
+If you bear these things in mind, I believe you'll find the job of both writing and maintaining software a much lighter burden in the long run.
 
 [^1]: I don't really like the term "technical debt" and prefer to use the term [maintenance load][maintenance load]
 [^2]: When replacing an application with an entirely new application, one of the best ways to go about that is one bite at a time, usually using the [strangler fig][strangler fig] pattern, which is something every software engineer should take the time to understand and learn.
