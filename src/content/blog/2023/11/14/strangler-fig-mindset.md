@@ -61,7 +61,7 @@ While feature flags have a very broad applicability beyond the "strangler fig" a
 
 Regardless of what system you're using or how you accomplish it, the idea behind a full blown event interception is that you have _something_ sitting between the consumer and your new and old application, service, or code intercepting the call. [^4] That _something_ determines how to route the call to the code based on whatever criteria you determine. If the interceptor determines that the new system can handle the request, it routes the request to the new system. Otherwise, it sends the request to the old system. The consumer doesn't need to know anything else but to continue consuming in the same way as before.
 
-When a full re-write of your application is required, rather than employing a monolithic approach, I would argue that the strangler fig approach is most often your best path forward. It you to re-write the system a bit at a time, release early and often to catch mistakes and missed logic from the old system for just one particular use case, and incorporate it as you go.
+When a full re-write of your application is required, rather than employing a monolithic approach, I would argue that the strangler fig approach is most often your best path forward. It allows you to re-write the system a bit at a time, release early and often to catch mistakes and missed logic from the old system for just one particular use case, and incorporate it as you go.
 
 ## Case Study
 
@@ -71,7 +71,7 @@ So, for this app, we chose to take a hybrid approach. We determined that we woul
 
 We rolled the React front-end app out with hardly a hiccup, after which we began writing the new PHP back-end. I came up with a list of every endpoint the new React app requests from Drupal, and made a todo task out of each one so we have a list. And now we pick them off one by one.
 
-For the strangler fig configuration, we actually were very fortunate in that the Drupal application's URLs are powered entirely by query strings. So in React, our configuration is set up so that if there's no path on our API call, it calls the Drupal powered API. And if there is a path, it sends the call to the new API. Once we've completed a re-write of an endpoint, we simply adjust the parameters of the call to go to the new API's URI path and the configuration of our API call takes care of the rest.
+For the strangler fig configuration, we actually were very fortunate that the Drupal application's URLs are powered entirely by query strings. So in React, our configuration is set up so that if there's no path on our API call, it calls the Drupal powered API. And if there is a path, it sends the call to the new API. Once we've completed a re-write of an endpoint, we simply adjust the parameters of the call to go to the new API's URI path and the configuration of our API call takes care of the rest.
 
 This allows us to write endpoints in the new API one at a time, and roll them out when they're ready. We can take plenty of time combing through the old business logic of an endpoint to find all the ways it could respond, and all the edge cases, and determine the best way to write that in our modern PHP app.
 
@@ -79,7 +79,7 @@ All told, it's been a remarkably positive experience. We're actually not done wi
 
 ## The Long Haul
 
-As we consider strangler fig, it's adaptations and permutations, I think we find that it's a mindset in which we create and re-create software for the long haul. Software is ever-evolving, ever-changing. We constantly find new and better ways to write software. Re-writing an application from scratch always has unforeseen consequences. In writing a new application alongside the old and strangling it out, we find a far easier route to stability and maintainabilty.
+As we consider strangler fig, it's adaptations and permutations, I think we find that it's a mindset in which we create and re-create software for the long haul. Software is ever-evolving, ever-changing. We constantly find new and better ways to write software. Re-writing an application from scratch always has unforeseen consequences. In writing a new application alongside the old and strangling it out, we find a far easier route to stability and maintainability.
 
 [^1]: One of the ways to soften the blow of deciding on a different path for any particular part of the codebase, is to use the co-location method of organizing your code, and in that way, the updated conventions you may decide on for the things you're working on now, are contained to that place in the codebase. I hope to write on co-location soon. I've recently given a presentation that seemed very well received on the subject at Longhorn PHP and I also hope to post that presentation.
 [^2]: I suppose it may also need to be said that you should follow convention within your team and that you need to be moving as a team, getting buy-in on new ideas and concepts. Move forward carefully and deliberately, but move forward.
