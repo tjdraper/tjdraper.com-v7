@@ -9,10 +9,22 @@ if (title) {
 } else {
     title = 'TJDraper.com';
 }
+
+// @ts-expect-error typscript complains about `process` being undefiend here
+const noIndex = process.env.NOINDEX === '1';
 ---
 
     <html lang="en">
         <head>
+            {() => {
+                if (!noIndex) {
+                    return null;
+                }
+
+                return (
+                    <meta name="robots" content="noindex,nofollow" />
+                );
+            }}
             <meta charset="utf-8" />
             <meta name="viewport" content="width=device-width,initial-scale=1" />
             <title>{title}</title>

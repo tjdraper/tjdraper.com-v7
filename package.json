@@ -3,8 +3,8 @@
     "type": "module",
     "version": "0.0.1",
     "scripts": {
-        "dev": "astro dev",
-        "start": "astro dev",
+        "dev": "NOINDEX=1 astro dev",
+        "start": "NOINDEX=1 astro dev",
         "build": "pnpm check && astro build",
         "preview": "astro preview",
         "astro": "astro",
