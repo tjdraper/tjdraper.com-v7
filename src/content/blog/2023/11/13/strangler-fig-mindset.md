@@ -1,10 +1,10 @@
 ---
-title: Strangler Fig
-slug: strangler-fig
+title: Strangler Fig Mindset
+slug: strangler-fig-mindset
 preview: How can you advance your software and applications by bits and pieces at a time? There is a way, and I'd like to talk about it…
 ---
 
-Every line of code you write is legacy code. That may sound harsh and disheartening, but it's the truth. In a year, or two, or five, you will need to change, remove, or refactor the code that you, your teammates, or your friends are writing right this very moment. Given that this is the case, what is the best approach to keep things moving forward?
+Every line of code you write is legacy code. That may sound harsh and disheartening, but it's the truth. In a year, or two, or five, you will need to change, remove, or refactor the code that you, your teammates, or your friends are writing right this very moment. With this in mind, how can we keep things moving forward?
 
 ## The Big Bad Monolithic Re-Write
 
@@ -28,7 +28,7 @@ He goes on to describe this as a really good way to approach a re-write. And he 
 
 > In particular I've noticed a couple of basic strategies that work well. The fundamental strategy is EventInterception, which can be used to gradually move functionality to the strangler fig and to enable AssetCapture.
 
-This is not a bad strategy, but based on my experience, I believe we can think more broadly about how to apply a strangler fig approach.
+This is not a bad strategy, but based on my experience, I believe we can think more broadly about how to apply a strangler fig mindset.
 
 ## 1. ABC - Always Be Correcting
 
@@ -48,44 +48,43 @@ As a software engineer, you are more than just a vicarious mouse and keyboard fo
 
 ### 3. [Feature Flags] (or [Feature Toggles])
 
-We're getting closer here to the [Event Interception] that Martin Fowler talked about. Of course, you can use feature flags to hide entirely new parts of the system (and you should where applicable). But you can also use it to route code from an old code path to a new one. When you have some new part of the system that is replacing an old part of the system, you can use feature flags to do this "strangling".
+We're getting closer here to the [Event Interception] that Martin Fowler talked about. Of course, you can use feature flags to hide new parts of the system (and you should where applicable). But you can also use it to route code from an old code path to a new one. When you have some new part of the system that is replacing an old part of the system, you can use feature flags to do this "strangling".
 
 There are two main reasons for doing so:
 
-1. You're not entirely confident that the new code you're about to release covers all the use cases of the old code. The feature flag is a safety valve. When users aren't getting what they need out of your new application code, you can switch back and go do some more refactoring on the new code. [^3]
+1. You're not entirely confident that the new code you're about to release covers all the use cases of the old code. The feature flag is a safety valve. When users aren't getting what they need out of your new application code, you can switch back and go do some more work on the new code. [^3]
 2. You need to coordinate the code changes with some other external factor — be it with another team in your company, perhaps coinciding with the announcement and availability of new features, or some service that your new code needs to talk to, etc.
 
-While feature flags have a very broad applicability beyond the "strangler fig" use case, they are a powerful tool in your tool box for accomplishing strangler fig on an on-going basis. You can strangle out the old code at a time of your choosing with your new code.
+While feature flags have a very broad applicability beyond the "strangler fig" adjacent use case, they are a powerful tool in your tool box for accomplishing a strangler fig mindset on an on-going basis. You can strangle out the old code at a time of your choosing with your new code.
 
 ### 4. [Event Interception]
 
-Regardless of what system you're using or how you accomplish it, the idea behind a full blown event interception is that you have _something_ sitting between the consumer and your new and old application, service, or code intercepting the call. That _something_ determines how to route the call to the code based on whatever criteria you determine. If the interceptor determines that the new system can handle the request, it routes the request to the new system. Otherwise, it sends the request to the old system. The consumer doesn't need to know anything else but to continue consuming in the same way as before.
+Regardless of what system you're using or how you accomplish it, the idea behind a full blown event interception is that you have _something_ sitting between the consumer and your new and old application, service, or code intercepting the call. [^4] That _something_ determines how to route the call to the code based on whatever criteria you determine. If the interceptor determines that the new system can handle the request, it routes the request to the new system. Otherwise, it sends the request to the old system. The consumer doesn't need to know anything else but to continue consuming in the same way as before.
 
-When a full re-write of your application is required, rather than employing a monolithic approach, I would argue that the strangler fig approach is most often your best path forward. This approach allows you to re-write the system a bit at a time, release early and often to catch mistakes and missed logic from the old system for just one particular use case, and incorporate it as you go.
+When a full re-write of your application is required, rather than employing a monolithic approach, I would argue that the strangler fig approach is most often your best path forward. It you to re-write the system a bit at a time, release early and often to catch mistakes and missed logic from the old system for just one particular use case, and incorporate it as you go.
 
 ## Case Study
 
-I think a good case study is an application that I worked on and continue to work on. The application was originally built in Drupal many years ago (long before I was on the team). Drupal made a big transition with Drupal 8 that left the app without a good upgrade path. Knowing everything we know now, we would choose different platforms for building this application. However, Drupal powered this application and the business for years. It literally enabled us to do what we do. Contained within the custom modules we added to that Drupal application over its many years of service is all the knowledge needed for the application to serve the business in the way it needs to.
+I think a good case study is an application that I worked on and continue to work on. The application was originally built in Drupal many years ago (long before I was on the team). Drupal made a big transition with Drupal 8 that left the app without a good upgrade path. Knowing everything we know now, we would choose different platforms for building this application. However, Drupal powered this application and the business for years. It literally enabled the success of the company. Contained within the custom modules we added to that Drupal application over its many years of service is all the knowledge needed for the application to serve the business in the way it needs to.
 
-So, for this app, we chose to take a hybrid approach. We determined that we would build a new front-end in React, and initially power it with API calls to Drupal. That meant in turn that we would update Drupal to serve JSON at its page URLs when a request was made to it from the new React application. Then, we would begin a strangler fig approach of updating all the API calls to a new PHP application. This is why I call this a hybrid approach. The new front-end was entirely new, including a fresh coat of paint. But the primary business logic was still contained in Drupal.
+So, for this app, we chose to take a hybrid approach. We determined that we would build a new front-end in React, and initially power it with API calls to Drupal. That meant in turn that we would update Drupal to serve JSON at its page URLs when a request was made to it from the new React application. Then, we would begin a strangler fig approach of updating all the API calls to a new PHP application. This is why I call this a hybrid approach. The React front-end was entirely new, including a fresh coat of paint. But the primary business logic was still contained in Drupal.
 
 We rolled the React front-end app out with hardly a hiccup, after which we began writing the new PHP back-end. I came up with a list of every endpoint the new React app requests from Drupal, and made a todo task out of each one so we have a list. And now we pick them off one by one.
 
-For the strangler fig configuration, we actually were very fortunate that we don't have to keep a list of switched over endpoints or anything like that. The Drupal application's URLs are powered entirely by query strings. So in React, our configuration is set up so that if there's no path on our API call, it calls the Drupal powered API. And if there is a path, it sends the call to the new API. Once we've completed a re-write of an endpoint, we simply adjust the parameters of the call to go to the new API's URI path and the configuration of our strangler fig pattern takes care of the rest.
+For the strangler fig configuration, we actually were very fortunate in that the Drupal application's URLs are powered entirely by query strings. So in React, our configuration is set up so that if there's no path on our API call, it calls the Drupal powered API. And if there is a path, it sends the call to the new API. Once we've completed a re-write of an endpoint, we simply adjust the parameters of the call to go to the new API's URI path and the configuration of our API call takes care of the rest.
 
-This allows us to write endpoints in the new API one at a time, and roll them out when they're good and ready. We can take plenty of time combing through the old business logic to find all the ways it could respond, and all the edge cases, and determine the best way to write that in our modern PHP app.
+This allows us to write endpoints in the new API one at a time, and roll them out when they're ready. We can take plenty of time combing through the old business logic of an endpoint to find all the ways it could respond, and all the edge cases, and determine the best way to write that in our modern PHP app.
 
 All told, it's been a remarkably positive experience. We're actually not done with the new PHP API yet, but we've converted several end-points over and it's going very well.
 
 ## The Long Haul
 
-As we consider strangler fig, it's adaptations and permutations, I think we find that it's a mindset in which we create and re-create software for the long haul. Software is ever-evolving, ever-changing. We constantly find new and better ways to write software. Re-writing our applications from scratch always has unforeseen consequences. In writing a new application alongside the old and strangling it out, we find a far easier route to stability and maintainabilty.
-
-I hope I've given you some things to think about and some resources to consider as you write and maintain your applications.
+As we consider strangler fig, it's adaptations and permutations, I think we find that it's a mindset in which we create and re-create software for the long haul. Software is ever-evolving, ever-changing. We constantly find new and better ways to write software. Re-writing an application from scratch always has unforeseen consequences. In writing a new application alongside the old and strangling it out, we find a far easier route to stability and maintainabilty.
 
 [^1]: One of the ways to soften the blow of deciding on a different path for any particular part of the codebase, is to use the co-location method of organizing your code, and in that way, the updated conventions you may decide on for the things you're working on now, are contained to that place in the codebase. I hope to write on co-location soon. I've recently given a presentation that seemed very well received on the subject at Longhorn PHP and I also hope to post that presentation.
 [^2]: I suppose it may also need to be said that you should follow convention within your team and that you need to be moving as a team, getting buy-in on new ideas and concepts. Move forward carefully and deliberately, but move forward.
 [^3]: Be sure to remove feature flags and old code paths once releases are complete and you don't need them anymore. Part of good system maintenance is eliminating dead code and dead options.
+[^4]: That event interception can happen with code in the new application. It can determine if it is capable of handling the event/request, and forward to the old application if not.
 
 [BuzzingPixel.com]: https://www.buzzingpixel.com
 [Martin Fowler Strangler Fig]: https://martinfowler.com/bliki/StranglerFigApplication.html
