@@ -17,7 +17,7 @@ export default function Component (
 
     return (
         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl text-center mb-10">
-            <a href={post.data.link} className="text-tjd-red-500 hover:text-tjd-red-600">
+            <a href={post.data.link} className="text-tjd-red-500 hover:text-tjd-red-600 underline">
                 {post.data.title}
                 {' '}
                 &rarr;
