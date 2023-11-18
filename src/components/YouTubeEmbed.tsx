@@ -12,6 +12,7 @@ const YoutubeEmbed = ({ youTubeId }: { youTubeId: string }) => (
     </div> */
     <div className="mx-auto max-w-6xl text-center pt-8">
         <div className="aspect-w-16 aspect-h-9">
+            {/* eslint-disable-next-line jsx-a11y/iframe-has-title */}
             <iframe
                 width="853"
                 height="480"
