@@ -34,6 +34,7 @@
         "@babel/core": "^7.23.2",
         "@babel/eslint-parser": "^7.22.15",
         "@babel/preset-env": "^7.23.2",
+        "@tailwindcss/aspect-ratio": "^0.4.2",
         "@types/markdown-it": "^13.0.6",
         "@types/markdown-it-footnote": "^3.0.3",
         "@types/sanitize-html": "^2.9.4",
