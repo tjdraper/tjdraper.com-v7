@@ -1,6 +1,8 @@
 ---
 // eslint-disable-next-line import/no-unresolved
 import { getCollection } from 'astro:content';
+// noinspection TypeScriptCheckImport
+import smartypants from 'smartypants';
 import Layout from '../layout/Layout.astro';
 import { type Posts } from './blog/Post';
 import PostTitle from './PostTitle';
@@ -17,9 +19,10 @@ const posts = (await getCollection('blog')).reverse() as unknown as Posts;
                     <h1 class="text-4xl font-bold tracking-tight sm:text-5xl text-center mb-10">
                         <PostTitle post={post} />
                     </h1>
-                    <div class="prose prose-xl max-w-none">
-                        {post.data.preview}
-                    </div>
+                    <div
+                        class="prose prose-xl max-w-none"
+                        set:html={smartypants(post.data.preview)}
+                    />
                     <div class="text-center">
                         <a
                             class="text-tjd-red-500 hover:text-tjd-red-600"
