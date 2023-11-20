@@ -3,13 +3,11 @@ import rss, { type RSSFeedItem } from '@astrojs/rss';
 // @ts-ignore
 import { getCollection } from 'astro:content';
 import sanitizeHtml from 'sanitize-html';
-import MarkdownIt from 'markdown-it';
-import footnote from 'markdown-it-footnote';
 import type { Post, Posts } from './Post';
 
-const parser = (new MarkdownIt()).use(footnote);
-
 const mapPostToRssFeedItem = async (post: Post): Promise<RSSFeedItem> => {
+    // const tmp = await import(`../../content/blog/${post.id}`);
+
     const idArray = post.id.split('/');
 
     const year = idArray[0];
@@ -18,21 +16,16 @@ const mapPostToRssFeedItem = async (post: Post): Promise<RSSFeedItem> => {
 
     const day = idArray[2];
 
-    const link = post.data.link ? post.data.link : `/blog/${post.slug}/`;
+    const link = `/blog/${post.slug}/`;
 
-    let body = parser.render(post.body);
+    let body = post.data.preview;
 
-    let { title } = post.data;
+    const { title } = post.data;
 
-    if (post.data.link) {
-        title += ' →';
-
-        body = `
-            <a href="https://www.tjdraper.com/blog/${post.slug}/">Permalink</a>
-            <br>
-            ${body}
-        `;
-    }
+    body = `
+        ${body}
+        <a href="https://www.tjdraper.com/blog/${post.slug}/">Read the full post →</a>
+    `;
 
     return ({
         link,
