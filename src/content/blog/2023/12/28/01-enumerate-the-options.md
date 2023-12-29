@@ -74,7 +74,7 @@ class InstanceVariableCollection
 
 We now have an enum that enumerates the possible known values that the key can be. This both takes the guess work out of calling the `getValue` method and allows us to inspect a list of values to know what we might be after.
 
-But we haven't yet solved the problem of what to do about trying to get a key that may not exist in the databse but our application thinks it should. Since we know all the keys, we can also know what the defaults should be, at least in this case. There may be cases where you would want to throw an exception if a value was missing from the database, but I will not demonstrate that here because that was not the case in the code we were working with. I will just note that you'll want to modify your code to throw a custom exception with relevant information about what went wrong rather than letting PHP throw an execution about a missing array key that will be harder to debug and track down due to its generic-ness.
+But we haven't yet solved the problem of what to do about trying to get a key that may not exist in the databse but our application thinks it should. Since we know all the keys, we can also know what the defaults should be, at least in this case. There may be cases where you would want to throw an exception if a value was missing from the database, but I will not demonstrate that here because that was not the case in the code we were working with. I will just note that you'll want to modify your code to throw a custom exception with relevant information about what went wrong rather than letting PHP throw an exception about a missing array key that will be harder to debug and track down due to its generic-ness.
 
 In this case, we decided to provide some defaults for cases where a value might not exist in the database. Here's what that looks like:
 
@@ -85,16 +85,16 @@ enum InstanceVariableKeys: string
     case DISABLE_FEATURE_2 = 'disable_feature_2';
     case INSTANCE_NAME = 'instance_name';
     case INSTANCE_PER_PAGE = 'instance_per_page';
-}
 
-class InstanceVariableDefaults
-{
-    public const VALUES = [
-        InstanceVariableKeys::DISABLE_FEATURE_1->value => false,
-        InstanceVariableKeys::DISABLE_FEATURE_2->value => false,
-        InstanceVariableKeys::INSTANCE_NAME->value => '',
-        InstanceVariableKeys::INSTANCE_PER_PAGE->value => 20,
-    ];
+    public function defaultValue()
+    {
+        return match($this) {
+            InstanceVariableKeys::DISABLE_FEATURE_1 => false,
+            InstanceVariableKeys::DISABLE_FEATURE_2 => false,
+            InstanceVariableKeys::INSTANCE_NAME => '',
+            InstanceVariableKeys::INSTANCE_PER_PAGE => 20,
+        }
+    }
 }
 
 class InstanceVariableCollection
@@ -112,14 +112,9 @@ class InstanceVariableCollection
         }
     }
 
-    public function getValue(InstanceVariableKeys $key): string {
-        $value = $this->records[$key->value]->field_variables_value ?? null;
-        
-        if ($value === null) {
-            $value = InstanceVariableDefaults::VALUES[$key->value];
-        }
-
-        return $value;
+    public function getValue(InstanceVariableKeys $key): string
+    {
+        return $this->records[$key->value]->field_variables_value ?? $key->defaultValue();
     }
 }
 ```
@@ -132,27 +127,39 @@ To make our collection a little smarter, let's break it up a little like this:
 enum InstanceVariableKeysString: string
 {
     case INSTANCE_NAME = 'instance_name';
+    
+    public function defaultValue(): string
+    {
+        return match($this) {
+            InstanceVariableKeys::INSTANCE_NAME => '',
+        }
+    }
 }
 
 enum InstanceVariableKeysBoolean: string
 {
     case DISABLE_FEATURE_1 = 'disable_feature_1';
     case DISABLE_FEATURE_2 = 'disable_feature_2';
+
+    public function defaultValue(): bool
+    {
+        return match($this) {
+            InstanceVariableKeys::DISABLE_FEATURE_1 => false,
+            InstanceVariableKeys::DISABLE_FEATURE_2 => false,
+        }
+    }
 }
 
 enum InstanceVariableKeysInteger: string
 {
     case INSTANCE_PER_PAGE = 'instance_per_page';
-}
 
-class InstanceVariableDefaults
-{
-    public const VALUES = [
-        InstanceVariableKeysBoolean::DISABLE_FEATURE_1->value => false,
-        InstanceVariableKeysBoolean::DISABLE_FEATURE_2->value => false,
-        InstanceVariableKeysString::INSTANCE_NAME->value => '',
-        InstanceVariableKeysInteger::INSTANCE_PER_PAGE->value => 20,
-    ];
+    public function defaultValue(): int
+    {
+        return match($this) {
+            InstanceVariableKeys::INSTANCE_PER_PAGE => 20,
+        }
+    }
 }
 
 class InstanceVariableCollection
@@ -187,21 +194,15 @@ class InstanceVariableCollection
 
     private function getValue(
         InstanceVariableKeysString|InstanceVariableKeysBoolean|InstanceVariableKeysInteger $key
-    ): string {
-        $value = $this->records[$key->value]->field_variables_value ?? null;
-        
-        if ($value === null) {
-            $value = InstanceVariableDefaults::VALUES[$key->value];
-        }
-
-        return $value;
+    ): string|bool|int {
+        return $this->records[$key->value]->field_variables_value ?? $key->defaultValue();
     }
 }
 ```
 
 Now we have solid types coming out of our collection class because we already know what each value's type should be.
 
-You could argue that there's a better database design, and you'd be right. This is not the way I'd design the data in persistence. But this is the system we have. And what we've done is encapsulated the responsibility of dealing with the data idiosyncrasies as best we can, in the safest manner we can for the system we're working with. We now have very safe code giving out properly typed values that we can work with on the other side. The caller need not know all the silly stuff. It can get the value one of the enumerated keys and be on its merry way.
+You could argue that there's a better database design, and you'd be right. This is not the way I'd design the data in persistence. But this is the system we have. And what we've done is encapsulated the responsibility of dealing with the data idiosyncrasies as best we can, in the safest manner we can for the system we're working with. We now have very safe code giving out properly typed values that we can work with on the other side. The caller need not know all the silly stuff. It can get the value of one of the enumerated keys and be on its merry way.
 
 And we've made it really easy to know what the legal values are. This makes the system easy to use, and easy to maintain. And we made the intention of each key very clear with types.
 
