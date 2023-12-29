@@ -16,9 +16,11 @@ What we don't have in PHP (to be fair we don't have it in JavaScript either, but
 
 As I said, PHP is very array heavy. Avoiding PHP's "arrays" is pretty much impossible. And I'd also like to note that while I dislike the name because they are not actually arrays, there's nothing wrong with a dictionary data type. It's actually quite useful. The real problem is we don't have real arrays in PHP so we must use a dictionary to accomplish the same thing.
 
-And, I'd also argue that even if we had traditional arrays, like I'll argue for dictionaries, we shouldn't be passing them around as transports for data. When you need to pass a collection of data, I think you should use a collection. In PHP, we implement collections as classes. There are libraries that you can use to create collection classes, but I've found every single one of them to be overly complicated to use, and yet still don't support all the use cases I often have — at least not easily.
+And, I'd also argue that even if we had traditional arrays, we shouldn't be passing them around as transports for data (I'd make the same argument for dictionary types). When you need to pass a collection of data, I think you should use a collection. In PHP, we implement collections as classes. There are libraries that you can use to create collection classes, but I've found every single one of them to be very heavy and overly complicated to use, and yet still don't support all the use cases I often have — at least not easily.
 
-But, the good news is, building a collection class is pretty trivial. The collection class I'll demonstrate here will utilize PHP "arrays" (or a dictionary) internally. That's what I'll call an internal implementation detail that the outside world need know nothing about.
+Additionally, most collection libraries want to implement `ArrayAccess` so that they can be treated as arrays. I object to this on a fundamental level. They are not arrays, just call the methods on the collection. That makes things much clearer and easier to read anyway.
+
+And the good news is, building a collection class is pretty trivial. The collection class I'll demonstrate here will utilize PHP "arrays" (or a dictionary) internally. That's what I'll call an internal implementation detail that the outside world need know nothing about.
 
 So, let me show you some code:
 
@@ -119,7 +121,7 @@ readonly class SomeEntityCollection
 }
 ```
 
-This is the beauty of typed, custom collections. When you build it, you know the data, and you can locate the logic to deal with that data where it belongs, with the types. You can put all kinds of methods on these custom collection classes as you need them. You might need to filter, or get the first item, or get the last item, etc. etc. The options are limitless. And it means you write these methods once on the collection, and you can use them anywhere, and they're safe to use because they're well typed and well-defined.
+This is the beauty of typed, custom collections. When you build it, you know the data, and you can locate the logic to deal with that data where it belongs; with the classes designed to deal with the data. You can put all kinds of methods on these custom collection classes as you need them. You might need to filter, or get the first item, or get the last item, etc. etc. The options are limitless. And it means you write these methods once on the collection, and you can use them anywhere, and they're safe to use because they're well typed and well-defined.
 
 As you can see, PHP's array/dictionary type is useful in implementations. And, as you can see, I typically use it most in collection classes. If you've never considered this before — as I hadn't many years ago when someone introduced me to the idea of not passing arrays around, but using collections — I hope this will inspire you.
 
