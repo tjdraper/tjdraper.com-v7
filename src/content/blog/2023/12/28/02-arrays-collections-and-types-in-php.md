@@ -1,7 +1,7 @@
 ---
 title: Arrays, Collections, and Types in PHP
 slug: arrays-collections-and-types-in-php
-preview: Arrays in PHP are… interesting. But useful. Let me know you a really good use case for arrays as an implementation detail of a collection class…
+preview: Arrays in PHP are… interesting. But useful. Let me show you a really good use case for arrays as an implementation detail of a collection class…
 ---
 
 PHP is a very "array" heavy language… wait, let me back up. I put "array" in quotes because arrays in PHP are… not arrays. Well, not in the traditional sense.
