@@ -143,7 +143,7 @@ In fact, here is an example in PHP. This is using a keyed array (which is [reall
 ```php
 <?php
 
-$testArray = ['foo' => 'bar',];
+$testArray = ['foo' => 'bar'];
 
 $testString = "test: $testArray";
 
