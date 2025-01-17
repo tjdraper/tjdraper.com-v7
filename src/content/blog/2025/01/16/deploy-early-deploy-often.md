@@ -4,7 +4,7 @@ slug: deploy-early-deploy-often
 preview: One of the things I like to do with my team is think through how to grease the skids for easy and rapid software development and deployment. Over the last year, I've done some work on my team's deployment processes, trying to make sure there's as little overhead as possible. Why is that? Well I want our team to be deploying all the time. Even while a feature is being developed and incomplete. Why is that? Well, I'm glad you asked. Pull up a chair and sit down…
 ---
 
-One of the things I like to do with my team is think through how to grease the skids for easy and rapid software development and deployment. Over the last year, I've done some work on my team's deployment processes, trying to make sure there's as little overhead as possible. Why is that? Well I want our team to be deploying all the time. Even while a feature is being developed and incomplete. Why is that? Well, I'm glad you asked. Pull up a chair and sit down.
+One of the things I like to do with my team is think through how to grease the skids for easy and rapid software development and deployment. Over the last year, I've done some work on my team's deployment processes, trying to make sure there's as little overhead as possible. Why is that? Well I want our team to be deploying all the time. Even while a feature is being developed and incomplete. Why is _that_? Well, I'm glad you asked. Pull up a chair and sit down.
 
 My friend, [Kevin Smith](https://kevinsmith.io/), posted a thing on Twitter not too long ago that got my attention regarding this subject.
 
@@ -22,13 +22,15 @@ This is really good. As software engineers, when we release often, even multiple
 
 > Timothy Fitz, formerly of IMVU, told a story that brought this lesson home to me. The discipline they came to was that as soon as they said to themselves, “That change couldn’t possibly break anything,” they deployed immediately. If you weren’t at least a little worried, why would you even say that? By making the overhead of deployment vanishingly small, they could create value with every deployment. Either the deployment was fine, in which case the engineer regained confidence, or the deployment broke, in which case the engineer learned something about the sensitivities of the system.
 
-I didn’t realize I was “discovering the sensitivities of the system” at the time, but early on in the first stages of an API transition for a project I was working on, I ran a deployment which took the app down in production. I had, of course, tested this new API endpoint extremely thoroughly in my local dev environment, a UAT, and a Staging environment. This new API endpoint performed exactly to spec in every test environment. And so, I deployed to production. It broke spectacularly.
+I didn’t realize I was “discovering the sensitivities of the system” at the time, but early on in the first stages of an API transition for a project I was working on, I ran a deployment which took the app down in production. I had, of course, tested this new API endpoint extremely thoroughly in my local dev environment, a UAT environment, and a Staging environment. This new API endpoint performed exactly to spec in every test environment. And so, I deployed to production.
 
-What I had done was actually deployed 2 things at once, though I didn’t think about it that way at the time. I deployed the new API endpoint, AND I deployed the change to the front-end that consumed the new API endpoint. The API endpoint was for the main menu of the application, which is an endpoint every page in the app touches. So when the endpoint failed after deploy it took the whole thing down.
+It broke spectacularly.
 
-What I learned that day (again) was to deploy things more incrementally. From then on, I would deploy new API endpoints separately from the switch over of the React app to consume that endpoint. That allows the testing the JSON response of the new endpoint before relying on it.
+What I had done was actually deployed 2 things at once, though I didn’t think about it that way at the time. I deployed the new API endpoint, AND I deployed the change to the front-end that consumed the new API endpoint. The API endpoint was for the main menu of the application, which is an endpoint every page in the app touches. So when the endpoint failed after deploy, it took the whole thing down.
 
-So, while there may be multiple deployments for a given API endpoint, development can actually move faster and not be afraid of breaking things.
+What I learned that day (again) was to deploy things more incrementally. From then on, I would deploy new API endpoints first. And then after testing that API endpoint, I would run another deployment to switch over the React app to consume that endpoint. That allowed testing the JSON response of the new endpoint before relying on it.
+
+So, while there may be multiple deployments during the process for a given API endpoint, development can actually move faster and not be afraid of breaking things.
 
 Kent Beck goes on with an analogy of code as inventory.
 
@@ -52,7 +54,7 @@ He talks about the “no code and no customers” bit, but my thinking is, start
 
 Now, of course, you have to be careful when you have established code and customers relying on it. But the principles of rapid deployment are no less useful. The problem set to solve is the same problem set.
 
-## What's the cash value
+## What's the cash value?
 
 On my team, we don't ask permission to deploy from non-technical people, and I would encourage all software teams and engineers to try to be in a position to manage and run deployments at will.
 
@@ -60,9 +62,9 @@ Of course this means 3 things (at least):
 
 1. You need to have and maintain a track record of not breaking things when you deploy.
 
-If your deployments break often, non-technical stake-holders are going to want to put controls on deployments. Of course this is the wrong instinct, because study after study shows software gets more stable the more often a team deploys and/or feels comfortable deploying. But the non-technical stake-holders aren't in a position to know that. All they know is that things break a lot, and when they dig in to find it why, it's related to a deployment. So, be studios with your development practices and think through all the effects that your deployments will have on the software.
+If your deployments break often, non-technical stake-holders are going to want to put controls on deployments. Of course this is the wrong instinct, because study after study shows software gets more stable the more often a team deploys and/or feels comfortable deploying. But the non-technical stake-holders aren't in a position to know that. All they know is that things break a lot, and when they dig in to find out why, it's related to a deployment. So, be studious with your development practices and think through all the effects that your deployments will have on the software.
 
-Maintain ways of testing or environments to test in that mirror production to the extent possible. And then always test your code and deployments in that way before releasing to production.
+Maintain ways of testing, or environments to test in, that mirror production to the extent possible. And then always run your code and deployments through those before releasing to production.
 
 Of course, deploying often is also part of not breaking things. Because the fewer changes that are deployed at once, the fewer things there are to go wrong. AND if something does go wrong, where to go to fix it is narrowed down considerably.
 
@@ -76,8 +78,10 @@ On my team, we make copious use of feature flags to determine when features go l
 
 ## Be the software expert
 
-I tell the engineers not to ask for permission to deploy. If you ask for permission to deploy from non-technical stake-holders, you are eroding their confidence in your ability to do your job. Don't do that. Instead, be confident. And of course, as we've mentioned, be right. Don't break things.
+I tell engineers not to ask for permission to deploy. If you ask for permission to deploy from non-technical stake-holders, you are eroding their confidence in your ability to do your job. Don't do that. Instead, be confident. And of course, as we've mentioned, be right. Don't break things.
 
 So when announcing releases, I encourage my team to use language like, "this release adds the groundwork for 'x'" rather than saying, "I'm releasing feature 'x'." This removes the need to ask for permission. Then the conversation with the product team, or whoever controls when features are released goes more like this: "when you would like to make feature 'x' available?"
 
-Perhaps what I'm saying applies only to mid-level, or even maybe only senior-level engineers. And if so, let that be an encouragement to you more junior engineers to level up your skills. This is part of becoming a senior engineer. As the engineer, you need to be the expert in your field. Half that battle is acting like the expert you are. Trust me, I know for many like myself, confidence is a learned behavior, but it's well worth learning.
+Perhaps what I'm saying about confidence and not asking for permission to deploy applies only to mid-level and above engineers. Or maybe it only senior-level and above engineers. I would encourage teams to still keep "permission" to deploy within the software engineering team. The engineers are the ones in the best position to know what's best for the software.
+
+And for the junior and mid-level engineers, let this be an encouragement to level up your skills. This is part of becoming a senior engineer. As the engineer, you need to be the expert in your field. Half that battle is acting like the expert you are. Trust me, I know for many like myself, confidence is a learned behavior, but it's well worth learning.
