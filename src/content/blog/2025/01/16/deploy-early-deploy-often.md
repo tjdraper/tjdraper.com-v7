@@ -82,6 +82,6 @@ I tell engineers not to ask for permission to deploy. If you ask for permission 
 
 So when announcing releases, I encourage my team to use language like, "this release adds the groundwork for 'x'" rather than saying, "I'm releasing feature 'x'." This removes the need to ask for permission. Then the conversation with the product team, or whoever controls when features are released goes more like this: "when you would like to make feature 'x' available?"
 
-Perhaps what I'm saying about confidence and not asking for permission to deploy applies only to mid-level and above engineers. Or maybe it only senior-level and above engineers. I would encourage teams to still keep "permission" to deploy within the software engineering team. The engineers are the ones in the best position to know what's best for the software.
+Perhaps what I'm saying about confidence and not asking for permission to deploy applies only to mid-level and above engineers. Or maybe it only applies to senior-level and above engineers. I would encourage teams to still keep "permission" to deploy within the software engineering team. The engineers are the ones in the best position to know what's best for the software.
 
 And for the junior and mid-level engineers, let this be an encouragement to level up your skills. This is part of becoming a senior engineer. As the engineer, you need to be the expert in your field. Half that battle is acting like the expert you are. Trust me, I know for many like myself, confidence is a learned behavior, but it's well worth learning.
