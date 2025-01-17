@@ -60,7 +60,7 @@ On my team, we don't ask permission to deploy from non-technical people, and I w
 
 Of course this means 3 things (at least):
 
-1. You need to have and maintain a track record of not breaking things when you deploy.
+### 1. You need to have and maintain a track record of not breaking things when you deploy.
 
 If your deployments break often, non-technical stake-holders are going to want to put controls on deployments. Of course this is the wrong instinct, because study after study shows software gets more stable the more often a team deploys and/or feels comfortable deploying. But the non-technical stake-holders aren't in a position to know that. All they know is that things break a lot, and when they dig in to find out why, it's related to a deployment. So, be studious with your development practices and think through all the effects that your deployments will have on the software.
 
@@ -68,11 +68,11 @@ Maintain ways of testing, or environments to test in, that mirror production to 
 
 Of course, deploying often is also part of not breaking things. Because the fewer changes that are deployed at once, the fewer things there are to go wrong. AND if something does go wrong, where to go to fix it is narrowed down considerably.
 
-2. You need to make sure you have a way of rolling back a deployment swiftly in case of failure.
+### 2. You need to make sure you have a way of rolling back a deployment swiftly in case of failure.
 
 Failures can and do happen. You cannot avoid the occasional failure. So make sure you have a plan in place for rolling back. And go over it in detail occasionally. With your team. In most cases, if the system is down for a minute, you're not going to catch too much flack. If it's down for 10 minutes, you're going to get lots of messages. If its down for longer than that due to a bad deploy, you can kiss frequent deployments goodbye.
 
-3. You need to have systems like feature flags in place that let you, the software team, deploy code whenever you want, even though the product team or other stake-holders may not be ready to "release" a feature.
+### 3. You need to have systems like feature flags in place that let you, the software team, deploy code whenever you want, even though the product team or other stake-holders may not be ready to "release" a feature.
 
 On my team, we make copious use of feature flags to determine when features go live. We decouple deployment from release. You'll probably want to go in after release and remove conditionals and feature flags, and yes, this is a trade-off with having more code-paths in your software (at least, temporarily). But I promise you it's well worth it to keep the code inventory low.
 
@@ -80,7 +80,7 @@ On my team, we make copious use of feature flags to determine when features go l
 
 I tell engineers not to ask for permission to deploy. If you ask for permission to deploy from non-technical stake-holders, you are eroding their confidence in your ability to do your job. Don't do that. Instead, be confident. And of course, as we've mentioned, be right. Don't break things.
 
-So when announcing releases, I encourage my team to use language like, "this release adds the groundwork for 'x'" rather than saying, "I'm releasing feature 'x'." This removes the need to ask for permission. Then the conversation with the product team, or whoever controls when features are released goes more like this: "when you would like to make feature 'x' available?"
+So when announcing releases, I encourage my team to use language like, "this release adds the groundwork for 'x'" rather than saying, "I'm releasing feature 'x'." This removes the need to ask for permission. Then the conversation with the product team, or whoever controls _when_ features are released goes more like this: "when would you like to make feature 'x' available?"
 
 Perhaps what I'm saying about confidence and not asking for permission to deploy applies only to mid-level and above engineers. Or maybe it only applies to senior-level and above engineers. I would encourage teams to still keep "permission" to deploy within the software engineering team. The engineers are the ones in the best position to know what's best for the software.
 
